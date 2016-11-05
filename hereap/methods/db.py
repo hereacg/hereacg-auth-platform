@@ -10,6 +10,8 @@ _db = None
 
 
 def client():
-    return pymongo.MongoClient(
+    cli = pymongo.MongoClient(
     _c.database_configs['mongo_uri']
     )
+    cli.fsync(async=True)
+    return cli
