@@ -18,10 +18,9 @@ def route(c,url,**kargs):
         routes.append((url,c,kargs))
     return c
 
-
+from handlers.login import LoginHandler
 
 
 
 if _app_c['debug']:
     routes[len(routes):] = _dev_routes[:]
-
