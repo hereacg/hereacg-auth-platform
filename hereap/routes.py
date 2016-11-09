@@ -16,7 +16,9 @@ def route(c,url,**kargs):
         routes.append((url,c))
     else:
         routes.append((url,c,kargs))
-    return c
+    def route_d(c,*args,**kargs):
+        return c
+    return route_d
 
 from handlers.login import LoginHandler
 
