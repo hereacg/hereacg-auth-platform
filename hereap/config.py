@@ -12,6 +12,5 @@ app_configs={
 }
 
 database_configs={
-'mongo_uri': 'mongo://localhost/auth' 
+'mongo_uri': os.getenv('OPENSHIFT_MONGODB_URL') or 'mongo://localhost/auth'
 }
-

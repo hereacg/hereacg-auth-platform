@@ -15,15 +15,17 @@ class BaseHandler(RequestHandler):
     def database(self):
         """
         () -> pymongo.MongoClient
-        
+
         Return a mongodb database client from configs.
         """
-        return database.client()
+        if not self._db:
+            self._db = database.client()
+        return self._db
 
     def get_current_user(self):
         """
         () -> dict
-        
+
         Get current user, return a dict for from token
         """
         user_cookie = self.get_secure_cookie('user_token')
@@ -36,17 +38,16 @@ class BaseHandler(RequestHandler):
     def logger(self):
         """
         () -> logging.Logger
-        
+
         Get logger
         """
         return getLogger(__name__)
-    
+
     @property
     def _c(self):
         """
         () -> ..config
-        
+
         Get configs.
         """
         return _c
-
